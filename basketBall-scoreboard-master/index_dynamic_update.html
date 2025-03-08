@@ -1,0 +1,90 @@
+<!-- index_dynamic_update.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Count Update</title>
+    <style>
+        body {
+            background-image: url(https://i.pinimg.com/564x/e9/a9/e2/e9a9e2ff010b7aea767d7c501aa17f23.jpg);
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif; /* Specify a fallback font-family */
+            color: white; /* Set text color to white for better readability on the background image */
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 50px;
+        }
+
+        #TeamScore {
+            font-size: 24px;
+        }
+
+        #timer {
+            font-size: 35px;
+        }
+        p{
+          font-size: 35px;
+        }
+    </style>
+    <script>
+        // Function to update the count value on the webpage
+        function updateCount(count) {
+            document.getElementById("TeamScore").innerText = count;
+        }
+
+        // Function to update the timer
+        function updateTimer(time) {
+            document.getElementById("timer").innerText = time;
+        }
+
+        // Timer countdown function
+        function startTimer(duration) {
+            let timer = localStorage.getItem("timer") || duration * 60;
+
+            function update() {
+                let minutes = Math.floor(timer / 60);
+                let seconds = timer % 60;
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                updateTimer(minutes + ":" + seconds);
+
+                if (--timer < 0) {
+                    timer = duration * 60;
+                }
+
+                localStorage.setItem("timer", timer);
+            }
+
+            // Initial update
+            update();
+
+            // Set interval to update every second
+            setInterval(update, 1000);
+        }
+
+        // Start the timer with a duration of 12 minutes
+        window.onload = function () {
+            startTimer(12);
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>BasketBall Score Update</h1>
+        <p>Team Score: <span id="TeamScore">{{ count }}</span></p>
+        <p><span id="timer"></span></p>
+    </div>
+</body>
+</html>
