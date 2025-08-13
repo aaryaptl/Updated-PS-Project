@@ -3,7 +3,7 @@ from flask import Flask, render_template
 import subprocess
 import threading
 
-app = Flask(__name__, template_folder="C:\\Users\\ganji\\OneDrive\\Desktop\\integration")
+app = Flask(__name__, template_folder=r"C:\Users\Admin\OneDrive\Documents\Desktop\PS project\Updtaed-Project-GitHub\basketBall-scoreboard-master")
 count = 0  # Global variable to store the count
 skip_count = 0  # Global variable to store the count of skipped outputs
 
